@@ -176,8 +176,8 @@ function MisPartidosPage() {
         ) : (
           <div className="space-y-4">
             {currentList.map((partido) => {
-              const isFull = partido.participantes_count >= partido.max_jugadores;
-              const faltantes = partido.max_jugadores - partido.participantes_count;
+              const isFull = partido.participantes_count >= (partido.max_jugadores ?? 10);
+              const faltantes = (partido.max_jugadores ?? 10) - partido.participantes_count;
               return (
                 <div key={partido.id} className="rounded-xl border border-border bg-card p-4">
                   <div className="mb-2 flex items-center justify-between">
@@ -208,13 +208,13 @@ function MisPartidosPage() {
                         {isFull ? "Cupos completos" : `Faltan ${faltantes} jugadores`}
                       </span>
                       <span className="text-foreground">
-                        {partido.participantes_count}/{partido.max_jugadores}
+                        {partido.participantes_count}/{(partido.max_jugadores ?? 10)}
                       </span>
                     </div>
                     <div className="mt-1 h-1.5 w-full rounded-full bg-secondary">
                       <div
                         className="h-1.5 rounded-full bg-primary transition-all"
-                        style={{ width: `${(partido.participantes_count / partido.max_jugadores) * 100}%` }}
+                        style={{ width: `${(partido.participantes_count / (partido.max_jugadores ?? 10)) * 100}%` }}
                       />
                     </div>
                   </div>

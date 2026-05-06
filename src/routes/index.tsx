@@ -129,7 +129,7 @@ function HomePage() {
         ) : (
           <div className="space-y-3">
             {partidos.map((partido) => {
-              const isFull = partido.participantes_count >= partido.max_jugadores;
+              const isFull = partido.participantes_count >= (partido.max_jugadores ?? 10);
               const alreadyJoined = myPartidos.has(partido.id);
               return (
                 <div key={partido.id} className="rounded-xl bg-card p-4">
@@ -147,14 +147,14 @@ function HomePage() {
                         <span className="flex items-center gap-1">
                           <Users className="h-3.5 w-3.5" />
                           <span className={isFull ? "text-primary" : "text-primary"}>
-                            {partido.participantes_count}/{partido.max_jugadores}
+                            {partido.participantes_count}/{(partido.max_jugadores ?? 10)}
                           </span>
                         </span>
                       </div>
                       <div className="mt-2 h-1.5 w-full rounded-full bg-secondary">
                         <div
                           className="h-1.5 rounded-full bg-primary transition-all"
-                          style={{ width: `${(partido.participantes_count / partido.max_jugadores) * 100}%` }}
+                          style={{ width: `${(partido.participantes_count / (partido.max_jugadores ?? 10)) * 100}%` }}
                         />
                       </div>
                     </div>
