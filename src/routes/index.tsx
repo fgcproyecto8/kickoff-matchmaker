@@ -16,9 +16,9 @@ interface Partido {
   nombre: string;
   horario: string;
   fecha: string;
-  es_publico: boolean;
-  max_jugadores: number;
-  estado: string;
+  es_publico: boolean | null;
+  max_jugadores: number | null;
+  estado: string | null;
   cancha: { nombre: string; ubicacion: string } | null;
   participantes_count: number;
   creador_id: string;
