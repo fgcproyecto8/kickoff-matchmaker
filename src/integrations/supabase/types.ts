@@ -14,7 +14,180 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      canchas: {
+        Row: {
+          created_at: string
+          id: string
+          imagen_url: string | null
+          nombre: string
+          precio: number | null
+          ubicacion: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          imagen_url?: string | null
+          nombre: string
+          precio?: number | null
+          ubicacion: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          imagen_url?: string | null
+          nombre?: string
+          precio?: number | null
+          ubicacion?: string
+        }
+        Relationships: []
+      }
+      horarios: {
+        Row: {
+          cancha_id: string
+          disponible: boolean | null
+          hora: string
+          id: string
+        }
+        Insert: {
+          cancha_id: string
+          disponible?: boolean | null
+          hora: string
+          id?: string
+        }
+        Update: {
+          cancha_id?: string
+          disponible?: boolean | null
+          hora?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "horarios_cancha_id_fkey"
+            columns: ["cancha_id"]
+            isOneToOne: false
+            referencedRelation: "canchas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      participantes: {
+        Row: {
+          id: string
+          joined_at: string
+          partido_id: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          joined_at?: string
+          partido_id: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          joined_at?: string
+          partido_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "participantes_partido_id_fkey"
+            columns: ["partido_id"]
+            isOneToOne: false
+            referencedRelation: "partidos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      partidos: {
+        Row: {
+          cancha_id: string
+          creador_id: string
+          created_at: string
+          descripcion: string | null
+          es_publico: boolean | null
+          estado: string | null
+          fecha: string
+          horario: string
+          id: string
+          max_jugadores: number | null
+          nombre: string
+        }
+        Insert: {
+          cancha_id: string
+          creador_id: string
+          created_at?: string
+          descripcion?: string | null
+          es_publico?: boolean | null
+          estado?: string | null
+          fecha?: string
+          horario: string
+          id?: string
+          max_jugadores?: number | null
+          nombre: string
+        }
+        Update: {
+          cancha_id?: string
+          creador_id?: string
+          created_at?: string
+          descripcion?: string | null
+          es_publico?: boolean | null
+          estado?: string | null
+          fecha?: string
+          horario?: string
+          id?: string
+          max_jugadores?: number | null
+          nombre?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partidos_cancha_id_fkey"
+            columns: ["cancha_id"]
+            isOneToOne: false
+            referencedRelation: "canchas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          ganados: number | null
+          goles: number | null
+          id: string
+          nombre: string
+          partidos_jugados: number | null
+          perdidos: number | null
+          posicion: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          ganados?: number | null
+          goles?: number | null
+          id: string
+          nombre?: string
+          partidos_jugados?: number | null
+          perdidos?: number | null
+          posicion?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          ganados?: number | null
+          goles?: number | null
+          id?: string
+          nombre?: string
+          partidos_jugados?: number | null
+          perdidos?: number | null
+          posicion?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
