@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as MisPartidosRouteImport } from './routes/mis-partidos'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as CrearPartidoRouteImport } from './routes/crear-partido'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MisPartidosRoute = MisPartidosRouteImport.update({
+  id: '/mis-partidos',
+  path: '/mis-partidos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrearPartidoRoute = CrearPartidoRouteImport.update({
+  id: '/crear-partido',
+  path: '/crear-partido',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,78 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/crear-partido': typeof CrearPartidoRoute
+  '/login': typeof LoginRoute
+  '/mis-partidos': typeof MisPartidosRoute
+  '/perfil': typeof PerfilRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/crear-partido': typeof CrearPartidoRoute
+  '/login': typeof LoginRoute
+  '/mis-partidos': typeof MisPartidosRoute
+  '/perfil': typeof PerfilRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/crear-partido': typeof CrearPartidoRoute
+  '/login': typeof LoginRoute
+  '/mis-partidos': typeof MisPartidosRoute
+  '/perfil': typeof PerfilRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/crear-partido' | '/login' | '/mis-partidos' | '/perfil'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/crear-partido' | '/login' | '/mis-partidos' | '/perfil'
+  id:
+    | '__root__'
+    | '/'
+    | '/crear-partido'
+    | '/login'
+    | '/mis-partidos'
+    | '/perfil'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CrearPartidoRoute: typeof CrearPartidoRoute
+  LoginRoute: typeof LoginRoute
+  MisPartidosRoute: typeof MisPartidosRoute
+  PerfilRoute: typeof PerfilRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mis-partidos': {
+      id: '/mis-partidos'
+      path: '/mis-partidos'
+      fullPath: '/mis-partidos'
+      preLoaderRoute: typeof MisPartidosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crear-partido': {
+      id: '/crear-partido'
+      path: '/crear-partido'
+      fullPath: '/crear-partido'
+      preLoaderRoute: typeof CrearPartidoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +127,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CrearPartidoRoute: CrearPartidoRoute,
+  LoginRoute: LoginRoute,
+  MisPartidosRoute: MisPartidosRoute,
+  PerfilRoute: PerfilRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
