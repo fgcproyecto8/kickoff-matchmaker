@@ -33,10 +33,14 @@ export const Route = createRootRoute({
       { title: "PartidoYa - Organizá tu fútbol 5" },
       { name: "description", content: "Organizá partidos de fútbol 5 con tus amigos" },
       { name: "author", content: "PartidoYa" },
-      { property: "og:title", content: "PartidoYa" },
-      { property: "og:description", content: "Organizá partidos de fútbol 5" },
+      { property: "og:title", content: "PartidoYa - Organizá tu fútbol 5" },
+      { property: "og:description", content: "Organizá partidos de fútbol 5 con tus amigos" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "PartidoYa - Organizá tu fútbol 5" },
+      { name: "twitter:description", content: "Organizá partidos de fútbol 5 con tus amigos" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e7c63612-fd8a-4e45-a3c4-eecd8bd5b5a7/id-preview-ea56a096--243968d8-d423-4563-b2c8-cfe7949271b6.lovable.app-1778081022040.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e7c63612-fd8a-4e45-a3c4-eecd8bd5b5a7/id-preview-ea56a096--243968d8-d423-4563-b2c8-cfe7949271b6.lovable.app-1778081022040.png" },
     ],
     links: [
       {
